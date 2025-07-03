@@ -27,6 +27,40 @@ I'm building JoyCaption to help fill this gap by performing near or on-par with 
 
 ## Using JoyCaption
 
+### Dual Captioning Script
+
+The `dual_caption.py` script can be used to generate two types of annotations for images: short Booru-style tags and detailed descriptions. It automatically selects the optimal batch size based on your GPU VRAM.
+
+**Usage:**
+
+```bash
+python dual_caption.py <image_path> [OPTIONS]
+```
+
+**Arguments:**
+
+-   `<image_path>`: Path to the image directory or a single image file.
+
+**Options:**
+
+-   `--model MODEL`: Path to the JoyCaption model. (default: `/root/llama-joycaption-beta-one-hf-llava`)
+-   `--batch-size BATCH_SIZE`: Batch size for processing. If not specified, it will be automatically selected based on GPU memory.
+-   `--temperature TEMPERATURE`: Sampling temperature for generation. (default: `0.6`)
+-   `--top-p TOP_P`: Top-p sampling. (default: `0.9`)
+-   `--top-k TOP_K`: Top-k sampling. (default: `None`)
+-   `--num-workers NUM_WORKERS`: Number of parallel workers for data loading. (default: `4`)
+-   `--overwrite`: Overwrite existing caption files.
+
+**Example:**
+
+```bash
+python dual_caption.py ./my_images --batch-size 4 --overwrite
+```
+
+This will process all images in the `my_images` directory, generate dual captions, and save them as `.txt` files alongside the images.
+
+### Demo
+
 ### Demo
 
 To see JoyCaption in action, check out the [demo on HuggingFace Spaces](https://huggingface.co/spaces/fancyfeast/joy-caption-beta-one).
